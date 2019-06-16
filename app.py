@@ -1,11 +1,18 @@
 import requests
-from pprint import pprint
+import urllib.parse
 import json
 
+API_URL = 'https://suggestqueries.google.com/complete/search?client=chrome&hl=en&gl=us&callback=__ng_jsonp__.__req3.finished&q='
 
-response = requests.get('https://suggestqueries.google.com/complete/search?client=chrome&hl=en&gl=us&callback=__ng_jsonp__.__req3.finished&q=python%20library')
+print('Please, write your word: ')
+inputText = urllib.parse.quote(input())
 
-dataForJSON = response.content.decode("utf-8").split("(", 1)[1].strip(")")
-currentJson = json.loads(dataForJSON)
+def getSuggestionFromSearchEngine(apiURL, inputString):
+    response = requests.get(API_URL + inputText)
 
-print(currentJson[0], '------->' , currentJson[1])
+    dataForJSON = response.content.decode("utf-8").split("(", 1)[1].strip(")")
+    currentJson = json.loads(dataForJSON)
+
+    print(currentJson[0], '------->' , currentJson[1])
+
+getSuggestionFromSearchEngine(API_URL, inputText)
