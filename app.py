@@ -2,13 +2,13 @@ import requests
 import urllib.parse
 import json
 
-API_URL = 'https://suggestqueries.google.com/complete/search?client=chrome&hl=en&gl=us&callback=__ng_jsonp__.__req3.finished&q='
-
+GOOGLE_API_URL = 'https://suggestqueries.google.com/complete/search?client=chrome&hl=en&gl=us&callback=__ng_jsonp__.__req3.finished&q='
 print('Please, write your word: ')
 inputText = urllib.parse.quote(input())
 
+
 def getSuggestionFromSearchEngine(apiURL, inputString):
-    response = requests.get(API_URL + inputText)
+    response = requests.get(apiURL + inputText)
 
     dataForJSON = response.content.decode("utf-8").split("(", 1)[1].strip(")")
     currentJson = json.loads(dataForJSON)
