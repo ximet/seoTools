@@ -2,6 +2,12 @@ import requests
 import urllib.parse
 import json
 
+def getSizeAllSymbols(text):
+    return len(text)
+
+def getSymbolsWithoutSpaces(text):
+    return getSizeAllSymbols(text) - text.count(' ')
+
 def sizeDescription(text):
     countLetters = len(text)
     error = []
@@ -29,4 +35,4 @@ def getWordFrequancies(text, word):
     else: 
         return 0
 
-print(getWordFrequancies("ololo Hello world, ololo are you ready, ololo?", "item"))
+print(getSymbolsWithoutSpaces("привет! ромашки! из многоэтажек, как стая ромашек. А я девочка с веером, с веером и никому ничего. Ведь ты не такой как все и не любишь дискотеки. Я не буду тебя"))
